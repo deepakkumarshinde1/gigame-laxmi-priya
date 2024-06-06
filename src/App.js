@@ -1,24 +1,74 @@
-import logo from './logo.svg';
-import './App.css';
+import { NavLink, NavNavLink, Navigate, Route, Routes } from "react-router-dom";
+import About from "./components/About";
+import Cart from "./components/Cart";
+import Home from "./components/Home";
+import Project from "./components/Project";
+import Team from "./components/Team";
+import PageNotFound from "./components/PageNotFound";
+import Java from "./components/Project/Java";
+import Php from "./components/Project/Php";
+import Python from "./components/Project/Python";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ul className="menu">
+        <li>
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/team"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Team
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/projects"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Project
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/my-cart"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Cart
+          </NavLink>
+        </li>
+      </ul>
+
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/projects" element={<Project />}>
+          <Route path="java" element={<Java />} />
+          <Route path="php" element={<Php />} />
+          <Route path="python" element={<Python />} />
+        </Route>
+        <Route path="/my-cart" element={<Cart />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+    </>
   );
 }
 
