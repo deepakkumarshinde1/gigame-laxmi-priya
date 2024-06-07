@@ -46,10 +46,10 @@ section {
   display: flex;
   gap: 1.25rem;
 }
-.menu > li > a {
+.menu li > a {
   text-decoration: none;
 }
 
-.menu > li > .active {
+.menu li > .active {
   text-decoration: underline !important;
 }
